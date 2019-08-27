@@ -6,6 +6,7 @@ import RegisterForm from "./components/RegisterForm";
 import MadlibPage from './components/MadlibPage';
 import PrivateRoute from './components/PrivateRoute';
 import Loginvanilla from './components/Vanillalogin';
+import VanillaRegister from './components/VanillaRegister';
 
 import './App.css';
 
@@ -18,7 +19,7 @@ function App() {
      <h1>Mad-Libs for Developers </h1>
     <PrivateRoute path="/protected" component={MadlibPage} />
      <Route  exact path="/" component={Loginvanilla}/>
-     <Route path="/register" component={RegisterForm}/>
+     <Route path="/register" component={VanillaRegister}/>
     </div>
   );
 }
