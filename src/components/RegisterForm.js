@@ -57,17 +57,30 @@ const RegisterForm = ({ errors, touched, values, status }) => {
 };
 
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ username, password }) {
-    return {
-      username: username || "",
-      password: password || ""
-    };
-  },
 
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("Please Fill In Your Username"),
-    password: Yup.string().required("Please Enter Your Password")
-  })
-})(RegisterForm);
+    mapPropsToValues({ username, password, }) {
+        return{
+            username : username || "",
+            password : password || "",
+        }
+    },
+
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required("Please Fill In Your Username"),
+        password: Yup.string().required("Please Enter Your Password")
+    }),
+
+    handleSubmit(values, { props }) {
+        console.log(values);
+        axios
+        .post('https://bw-dev-libs.herokuapp.com/auth/register', values)
+        .then(res => {
+          console.log(res);
+          props.history.push('/');
+        })
+        .catch(err => console.log(err.response));
+        }
+        
+})(RegisterForm)
 
 export default FormikRegisterForm;
