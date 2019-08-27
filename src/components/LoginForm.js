@@ -38,7 +38,20 @@ const FormikLoginForm = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Please Fill In Your Email"),
         password: Yup.string().required("Please Enter Your Password")
-    })
+    }),
+
+    handleSubmit(values, { props }) {
+        console.log(values);
+        axios
+        .post('https://bw-dev-libs.herokuapp.com/auth/login', values)
+        .then(res => {
+          console.log(res.data.payload);
+          localStorage.setItem('token', res.data.payload);
+          props.history.push('/MadlibPage');
+        })
+        .catch(err => console.log(err.response));
+        }
+
 })(LoginForm)
 
 export default FormikLoginForm;
