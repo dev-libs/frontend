@@ -2,6 +2,9 @@ import React from 'react';
 import { Form, Field, withFormik } from 'formik';
 import axios from "axios";
 import * as Yup from 'yup';
+// import Styled from 'styled-components';
+
+
 
 
 const LoginForm = ({ errors, touched, values, status }) => {
@@ -14,7 +17,7 @@ const LoginForm = ({ errors, touched, values, status }) => {
                     <Field type="username" name="Username" placeholder="username" />
                     {touched.name && errors.name && <p className="name-login">{errors.name}</p>}
                 </div>
-                <div>
+                <div className="passwords-login">
                     <Field type="password" name="Password" placeholder="password" />
                     {touched.password && errors.name && <p className="passsword-login">{errors.password}</p>}
                 </div>
