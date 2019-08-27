@@ -16,9 +16,11 @@ function App() {
      <h1>Dev-Libs</h1>
 
      <h1>Mad-Libs for Developers </h1>
+
     <PrivateRoute path="/protected" component={MadlibPage} />
      <Route  exact path="/" component={Loginvanilla}/>
      <Route path="/register" component={RegisterForm}/>
+
     </div>
   );
 }
