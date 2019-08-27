@@ -4,6 +4,8 @@ import { Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm"
 import RegisterForm from "./components/RegisterForm";
 import MadlibPage from './components/MadlibPage';
+import PrivateRoute from './components/PrivateRoute';
+import Loginvanilla from './components/Vanillalogin';
 
 import './App.css';
 
@@ -12,12 +14,13 @@ function App() {
     <div className="App">
 
      <h1>Dev-Libs</h1>
-     <MadlibPage/>
 
      <h1>Mad-Libs for Developers </h1>
 
-     <Route exact path="/" component={RegisterForm}/>
-     <Route path="/login" component={LoginForm}/>
+    <PrivateRoute path="/protected" component={MadlibPage} />
+     <Route  exact path="/" component={Loginvanilla}/>
+     <Route path="/register" component={RegisterForm}/>
+
     </div>
   );
 }
