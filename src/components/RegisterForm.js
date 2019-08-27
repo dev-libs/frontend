@@ -69,7 +69,6 @@ const FormikRegisterForm = withFormik({
         name: Yup.string().required("Please Fill In Your Username"),
         password: Yup.string().required("Please Enter Your Password")
     }),
-
     handleSubmit(values, { props }) {
         console.log(values);
         axios
