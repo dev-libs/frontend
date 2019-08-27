@@ -1,32 +1,64 @@
-import React from 'react'; 
-import { Form, Field, withFormik } from 'formik';
+import React from "react";
+import { Form, Field, withFormik } from "formik";
 import axios from "axios";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import styled from "styled-components";
 
+const LoginUsername = styled.div`
+  background-color: #858585;
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  padding: 8px;
+  width: 15%;
+`;
+
+const LoginPassword = styled.div`
+  background-color: #858585;
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  padding: 8px;
+  width: 15%;
+`;
+
+const Section = styled.section`
+  align-content: center;
+`;
+
+const Btn = styled.button`
+  font-size: 1.5rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  padding: 5px;
+`;
 
 const LoginForm = ({ errors, touched, values, status }) => {
+  return (
+    <Section>
+      <Form>
+        <LoginUsername>
+          <Field type="username" name="username" placeholder="Username" />
+          {touched.name && errors.name && (
+            <p className="name-login">{errors.name}</p>
+          )}
+        </LoginUsername>
 
+        <LoginPassword>
+          <Field type="password" name="password" placeholder="Password" />
+          {touched.password && errors.name && (
+            <p className="passsword-login">{errors.password}</p>
+          )}
+        </LoginPassword>
 
-    return (
-        <div>
-            <Form>
-                <div className="names-login">
-                    <Field type="username" name="Username" placeholder="username" />
-                    {touched.name && errors.name && <p className="name-login">{errors.name}</p>}
-                </div>
-                <div>
-                    <Field type="password" name="Password" placeholder="password" />
-                    {touched.password && errors.name && <p className="passsword-login">{errors.password}</p>}
-                </div>
-
-                <button type="submit">Login</button>
-            </Form>
-        </div>
-
-    );
-}
+        <Btn type="submit">Login</Btn>
+      </Form>
+    </Section>
+  );
+};
 
 const FormikLoginForm = withFormik({
+  
     mapPropsToValues({ username, password, }) {
         return{
             username : username || "",
@@ -54,3 +86,4 @@ const FormikLoginForm = withFormik({
 })(LoginForm)
 
 export default FormikLoginForm;
+
