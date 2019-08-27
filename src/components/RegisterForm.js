@@ -38,6 +38,8 @@ const FormikRegisterForm = withFormik({
         name: Yup.string().required("Please Fill In Your Username"),
         password: Yup.string().required("Please Enter Your Password")
     })
+
+    
 })(RegisterForm)
 
 export default FormikRegisterForm;
