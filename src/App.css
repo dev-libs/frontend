@@ -1,3 +1,9 @@
+body {
+  background-image: url("https://wallpapercave.com/w/wp2234698.jpg");
+  background-size: 100%;
+  background-size: cover;
+}
+
 .App {
   background-color: #1E1E1E;
   color: #EDEDED;
