@@ -22,10 +22,6 @@ const LoginPassword = styled.div`
   width: 15%;
 `;
 
-const Section = styled.section`
-  align-content: center;
-`;
-
 const Btn = styled.button`
   font-size: 1.5rem;
   margin-top: 25px;
@@ -35,7 +31,6 @@ const Btn = styled.button`
 
 const LoginForm = ({ errors, touched, values, status }) => {
   return (
-    <Section>
       <Form>
         <LoginUsername>
           <Field type="username" name="username" placeholder="Username" />
@@ -53,7 +48,6 @@ const LoginForm = ({ errors, touched, values, status }) => {
 
         <Btn type="submit">Login</Btn>
       </Form>
-    </Section>
   );
 };
 
@@ -67,7 +61,7 @@ const FormikLoginForm = withFormik({
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string().required("Please Fill In Your Email"),
+        name: Yup.string().required("Please Fill In Your Username"),
         password: Yup.string().required("Please Enter Your Password")
     }),
 
@@ -76,8 +70,8 @@ const FormikLoginForm = withFormik({
         axios
         .post('https://bw-dev-libs.herokuapp.com/auth/login', values)
         .then(res => {
-          console.log(res.data.payload);
-          localStorage.setItem('token', res.data.payload);
+        //   console.log(res.data.token);
+          localStorage.setItem('token', res.data.token);
           props.history.push('/MadlibPage');
         })
         .catch(err => console.log(err.response));
@@ -86,4 +80,3 @@ const FormikLoginForm = withFormik({
 })(LoginForm)
 
 export default FormikLoginForm;
-
