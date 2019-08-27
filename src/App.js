@@ -9,9 +9,8 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-     <h1>Dev-Libs</h1>
-     {/* <Route exact path="/" component={DevLib}/> */}
-     <Route path="/login" component={LoginForm}/>
+     <h1>Mad-Libs for Developers </h1>
+     <Route path="/" component={LoginForm}/>
      <Route path="/register" component={RegisterForm}/>
     </div>
   );
