@@ -27,9 +27,9 @@ const LoginForm = ({ errors, touched, values, status }) => {
 }
 
 const FormikLoginForm = withFormik({
-    mapPropsToValues({ email, password, }) {
+    mapPropsToValues({ username, password, }) {
         return{
-            email : email || "",
+            username : username || "",
             password : password || "",
         }
     },
