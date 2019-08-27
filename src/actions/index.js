@@ -1,4 +1,4 @@
-import axios from 'axios';
+import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 export const GET_MADLIB_DATA_START = "GET_MADLIB_DATA_START";
 export const GET_MADLIB_DATA_SUCCESS = "GET_MADLIB_DATA_SUCCESS";
@@ -15,17 +15,17 @@ export const DELETE_MADLIB_DATA_FAILURE = "DELETE_MADLIB_DATA_FAILURE";
 
 
 
-export const getData = ()=> {
+export const getData = (id)=> {
     return dispatch => {
         dispatch({ type : GET_MADLIB_DATA_START})
-        .get()
+        axiosWithAuth().get(`https://bw-dev-libs.herokuapp.com/libs/play/${id}`)
         .then(res => {
             console.log("response in get", res)
-            dispatch({type: GET_MADLIB_DATA_SUCCESS})
+            dispatch({type: GET_MADLIB_DATA_SUCCESS, payload: res.data})
         })
         .catch(err => {
             console.log("error in get", err)
-            dispatch({type: GET_MADLIB_DATA_FAILURE})
+            dispatch({type: GET_MADLIB_DATA_FAILURE, payload: err.response})
         });
     }
 }

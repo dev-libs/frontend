@@ -2,14 +2,13 @@ import React from 'react';
 import axios from 'axios';
 
 
-class Loginvanilla extends React.Component {
+class VanillaRegister extends React.Component {
   state = {
     credentials: {
       username: '',
       password: ''
     },
-    isLoading: false,
-    regMessage: ''
+    isLoading: false
   };
 
   handleChange = e => {
@@ -21,25 +20,13 @@ class Loginvanilla extends React.Component {
     });
   };
 
-  login = e => {
-    e.preventDefault();
-    axios
-      .post('https://bw-dev-libs.herokuapp.com/auth/login', this.state.credentials)
-      .then(res => {
-        console.log(res)  
-        localStorage.setItem('token', res.data.token);
-        this.props.history.push('/protected');
-      })
-      .catch(err => console.log(err.response));
-  };
   register = e => {
     e.preventDefault();
     axios
       .post('https://bw-dev-libs.herokuapp.com/auth/register', this.state.credentials)
       .then(res => {
-        console.log(res.data.message)
-        this.setState({...this.state, regMessage: res.data.message})  
-        // this.props.history.push('/');
+        console.log(res)  
+        this.props.history.push('/');
       })
       .catch(err => console.log(err.response));
   };
@@ -47,7 +34,7 @@ class Loginvanilla extends React.Component {
   render() {
     return (
       <div>
-        <form >
+        <form onSubmit={this.register}>
           <input
             type="text"
             name="username"
@@ -60,14 +47,11 @@ class Loginvanilla extends React.Component {
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <button onClick={this.login}>Log in</button>
-          <span>or</span>
-          <button onClick={this.register}>register</button>
+          <button>Register</button>
         </form>
-        {this.state.regMessage && <p>{this.state.regMessage}</p>}
       </div>
     );
   }
 }
 
-export default Loginvanilla;
+export default VanillaRegister;
