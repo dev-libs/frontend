@@ -16,8 +16,8 @@ function App() {
 
      <h1>Mad-Libs for Developers </h1>
 
-     <Route path="/" component={LoginForm}/>
-     <Route path="/register" component={RegisterForm}/>
+     <Route exact path="/" component={RegisterForm}/>
+     <Route path="/login" component={LoginForm}/>
     </div>
   );
 }
