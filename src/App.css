@@ -1,6 +1,9 @@
 .App {
+  background-color: #1E1E1E;
+  color: #EDEDED;
   text-align: center;
 }
 
-
-
+.names-login {
+  background-color: #858585;
+}

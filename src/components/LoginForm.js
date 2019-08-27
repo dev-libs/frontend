@@ -9,9 +9,8 @@ const LoginForm = ({ errors, touched, values, status }) => {
 
     return (
         <div>
-            <h1>Mad-Libs for Developers </h1>
             <Form>
-                <div>
+                <div className="names-login">
                     <Field type="username" name="Username" placeholder="username" />
                     {touched.name && errors.name && <p className="name-login">{errors.name}</p>}
                 </div>
