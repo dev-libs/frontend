@@ -12,7 +12,7 @@ export const PUT_MADLIB_DATA_FAILURE = "PUT_MADLIB_DATA_FAILURE";
 export const DELETE_MADLIB_DATA_START = "DELETE_MADLIB_DATA_START";
 export const DELETE_MADLIB_DATA_SUCCESS = "DELETE_MADLIB_DATA_SUCCESS";
 export const DELETE_MADLIB_DATA_FAILURE = "DELETE_MADLIB_DATA_FAILURE";
-
+export const ADD_ITEM_TO_STATE = "ADD_ITEM_TO_STATE";
 
 
 export const getData = (id)=> {
@@ -58,3 +58,5 @@ export const deleteData = () => {
         })
     }
 }
+export const handleTask = (item) => { 
+    return dispatch => {dispatch({type: ADD_ITEM_TO_STATE, payload: item})}}
