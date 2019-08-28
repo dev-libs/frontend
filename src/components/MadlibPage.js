@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import {Route, Link } from "react-router-dom";
+import Story from "./StoryPage";
 import styled from "styled-components";
-import { getData, postData } from "../actions";
+
+import {getData, postData, handleTask} from '../actions';
+
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -52,6 +56,84 @@ const LogoutBtn = styled.button`
   align-items: center;
 `;
 
+
+   
+const MadlibPage = (props) => {
+    const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
+    const dataSetUp = (e)=> {
+        e.preventDefault()
+        const data =[];
+        for(let i= 0; i <wordTypes.length; i++){
+            data.push({lib_id: libId, type_id: types[wordTypes[i]], answer: userAnswer[i], order: i})
+
+        }
+        console.log(data)
+        props.handleTask(userAnswer)
+        props.postData(data)
+    }
+    const[libId, setLibId]= useState(null)
+    const[play, setPlay] = useState(false)
+    const[form, setForm] = useState(false)
+    const[userAnswer, setUserAnswer]= useState({})
+    console.log(props.story.story)
+    const story = props.story.story;
+    console.log("user answer", userAnswer)
+    console.log(story)
+    let wordTypes = []
+    let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
+    if (story) wordTypes = story.split(' ').filter(word => word.includes("("))
+    if (wordTypes.length > 0){
+
+         wordTypes = wordTypes.map(word =>{
+             return word.split('').filter(letter =>  !badCharacters.includes(letter)).join('').toLowerCase()
+        })
+        
+    }
+    console.log(wordTypes)
+  
+const logout = ()=> {
+    localStorage.removeItem('token');
+    props.history.push('/');
+
+}
+    return(
+        <div>
+            hello world
+            <button onClick={logout}>log out</button>
+            {props.test}
+            <button onClick={()=>setPlay(true)}>play</button>
+            {play && <div><button onClick={()=>{
+                props.getData(1)
+                setLibId(1)
+                setForm(true)
+                }} >general</button>  
+                <button onClick={()=>{
+                    setLibId(2)
+                    setForm(true)
+                    props.getData(2)}}>javascript</button> 
+                 <button onClick={()=>{
+                     setLibId(3)
+                     setForm(true)
+                     props.getData(3)}} >python</button></div>}
+                 <form onSubmit={dataSetUp}>
+                 {form && wordTypes.map((wordType,i) => {
+                     return (<div key={i}><label>{wordType}</label><input name={i} value={userAnswer[i]} onChange={(e)=> {
+                         
+                         setUserAnswer({...userAnswer, [e.target.name]: e.target.value})
+                        //  props.handleTask(userAnswer)
+                     }}/></div>)
+                 })
+                }
+                     <button >submit your words</button>
+                     </form>
+                     <Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
+                     {/* <Link to={`/protected/${id}`}>your story</Link> */}
+                     {console.log("answers connected to redux", props.userAnswers)}
+                 
+        </div>
+     
+   
+
 const Submit = styled.button`
   background-color: #ededed;
   font-size: 1rem;
@@ -77,123 +159,11 @@ const PartOfSpeechContainer = styled.div`
     align-items: center;
 `;
 
-const MadlibPage = props => {
-  const types = {
-    Noun: 1,
-    Verb: 2,
-    Adjective: 3,
-    Adverb: 4,
-    Number: 5,
-    Color: 6
-  };
-  const dataSetUp = e => {
-    e.preventDefault();
-    const data = [];
-    for (let i = 0; i < wordTypes.length; i++) {
-      data.push({
-        lib_id: libId,
-        type_id: types[wordTypes[i]],
-        answer: userAnswer[i],
-        order: i
-      });
-    }
-    console.log(data);
-    props.postData(data);
-  };
-  const [libId, setLibId] = useState(null);
-  const [play, setPlay] = useState(false);
-  const [form, setForm] = useState(false);
-  const [userAnswer, setUserAnswer] = useState({});
-  console.log(props.story.story);
-  const story = props.story.story;
-  console.log(story);
-  let wordTypes = [];
-  let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"];
-  if (story) wordTypes = story.split(" ").filter(word => word.includes("("));
-  if (wordTypes.length > 0) {
-    wordTypes = wordTypes.map(word => {
-      return word
-        .split("")
-        .filter(letter => !badCharacters.includes(letter))
-        .join("")
-        .toLowerCase();
-    });
-  }
-  console.log(wordTypes);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    props.history.push("/");
-  };
-  return (
-    <div>
-      hello world
-      <LogoutBtn onClick={logout}>Log Out</LogoutBtn>
-      {props.test}
-      <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
-      {play && (
-        <div>
-          <CategoryBtn
-            onClick={() => {
-              props.getData(1);
-              setLibId(1);
-              setForm(!form);
-            }}
-          >
-            General
-          </CategoryBtn>
+  
 
-          <Category2Btn
-            onClick={() => {
-              setLibId(2);
-              props.getData(2);
-            }}
-          >
-            JS
-          </Category2Btn>
 
-          <Category3Btn
-            onClick={() => {
-              setLibId(3);
-              props.getData(3);
-            }}
-          >
-            Python
-          </Category3Btn>
-        </div>
-      )}
-      <form onSubmit={dataSetUp}>
-        {form &&
-          wordTypes.map((wordType, i) => {
-            return (
-              <PartOfSpeechContainer key={i}>
-                <PartOfSpeech>{wordType}</PartOfSpeech>
-                <input
-                  name={i}
-                  value={userAnswer[i]}
-                  onChange={e => {
-                    setUserAnswer({
-                      ...userAnswer,
-                      [e.target.name]: e.target.value
-                    });
-                  }}
-                />
-              </PartOfSpeechContainer>
-            );
-          })}
-        <Submit>Submit your Words</Submit>
-      </form>
-    </div>
-  );
-};
-const mapStateToProps = state => {
-  return {
-    test: state.test,
-    story: state.story,
-    error: state.error
-  };
-};
-export default connect(
-  mapStateToProps,
-  { getData, postData }
-)(MadlibPage);
+
+export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
+
+

@@ -3,6 +3,7 @@ import {
     POST_MADLIB_DATA_START, POST_MADLIB_DATA_SUCCESS, POST_MADLIB_DATA_FAILURE,
     PUT_MADLIB_DATA_START, PUT_MADLIB_DATA_SUCCESS, PUT_MADLIB_DATA_FAILURE,
     DELETE_MADLIB_DATA_START, DELETE_MADLIB_DATA_SUCCESS, DELETE_MADLIB_DATA_FAILURE,
+    ADD_ITEM_TO_STATE,
 } from "../actions";
 
 const initialState = {
@@ -33,6 +34,12 @@ export const reducer = (state = initialState, action)=> {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case ADD_ITEM_TO_STATE: 
+            return{
+                ...state,
+                isLoading: false,
+                userAnswers: action.payload
             }
         default:
             return state;
