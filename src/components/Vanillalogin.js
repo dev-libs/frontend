@@ -3,6 +3,21 @@ import axios from "axios";
 import styled from "styled-components";
 
 const Btn = styled.button`
+  background-color: #EDEDED;
+  color: #007ACC;
+  border-color: #007ACC;
+  border-width: medium;
+  font-size: 1rem;
+  margin: 15px;
+  padding: 7px;
+  border-radius: 6px;
+`;
+
+const Btn2 = styled.button`
+  background-color: #EDEDED;
+  color: #6A9955;
+  border-color: #6A9955;
+  border-width: medium;
   font-size: 1rem;
   margin: 15px;
   padding: 7px;
@@ -91,7 +106,7 @@ class Loginvanilla extends React.Component {
 
           <Btn onClick={this.login}>Log in</Btn>
           <span>or</span>
-          <Btn onClick={this.register}>Register</Btn>
+          <Btn2 onClick={this.register}>Register</Btn2>
         </form>
         {this.state.regMessage && <p>{this.state.regMessage}</p>}
       </div>
