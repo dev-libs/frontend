@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import {Route, Link } from "react-router-dom";
+import Story from "./StoryPage";
 import styled from "styled-components";
-import { getData, postData } from "../actions";
+
+import {getData, postData, handleTask} from '../actions';
+
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -80,54 +84,43 @@ const PartOfSpeechContainer = styled.div`
 const CategoryWrapper = styled.div`
     padding: 20px;
 `;
+   
+const MadlibPage = (props) => {
+    const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
+    const dataSetUp = (e)=> {
+        e.preventDefault()
+        const data =[];
+        for(let i= 0; i <wordTypes.length; i++){
+            data.push({lib_id: libId, type_id: types[wordTypes[i]], answer: userAnswer[i], order: i})
 
-const MadlibPage = props => {
-  const types = {
-    Noun: 1,
-    Verb: 2,
-    Adjective: 3,
-    Adverb: 4,
-    Number: 5,
-    Color: 6
-  };
-  const dataSetUp = e => {
-    e.preventDefault();
-    const data = [];
-    for (let i = 0; i < wordTypes.length; i++) {
-      data.push({
-        lib_id: libId,
-        type_id: types[wordTypes[i]],
-        answer: userAnswer[i],
-        order: i
-      });
+        }
+        console.log(data)
+        props.handleTask(userAnswer)
+        props.postData(data)
     }
-    console.log(data);
-    props.postData(data);
-  };
-  const [libId, setLibId] = useState(null);
-  const [play, setPlay] = useState(false);
-  const [form, setForm] = useState(false);
-  const [userAnswer, setUserAnswer] = useState({});
-  console.log(props.story.story);
-  const story = props.story.story;
-  console.log(story);
-  let wordTypes = [];
-  let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"];
-  if (story) wordTypes = story.split(" ").filter(word => word.includes("("));
-  if (wordTypes.length > 0) {
-    wordTypes = wordTypes.map(word => {
-      return word
-        .split("")
-        .filter(letter => !badCharacters.includes(letter))
-        .join("")
-        .toLowerCase();
-    });
-  }
-  console.log(wordTypes);
+    const[libId, setLibId]= useState(null)
+    const[play, setPlay] = useState(false)
+    const[form, setForm] = useState(false)
+    const[userAnswer, setUserAnswer]= useState({})
+    console.log(props.story.story)
+    const story = props.story.story;
+    console.log("user answer", userAnswer)
+    console.log(story)
+    let wordTypes = []
+    let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
+    if (story) wordTypes = story.split(' ').filter(word => word.includes("("))
+    if (wordTypes.length > 0){
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    props.history.push("/");
+         wordTypes = wordTypes.map(word =>{
+             return word.split('').filter(letter =>  !badCharacters.includes(letter)).join('').toLowerCase()
+        })
+        
+    }
+    console.log(wordTypes)
+  
+const logout = ()=> {
+    localStorage.removeItem('token');
+    props.history.push('/');   
   };
   return (
     <div>
@@ -187,6 +180,7 @@ const MadlibPage = props => {
           })}
         <Submit>Submit your Words</Submit>
       </form>
+<Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
     </div>
   );
 };
@@ -194,10 +188,14 @@ const mapStateToProps = state => {
   return {
     test: state.test,
     story: state.story,
-    error: state.error
+    error: state.error,
+    userAnswers: state.userAnswers
   };
 };
-export default connect(
-  mapStateToProps,
-  { getData, postData }
-)(MadlibPage);
+
+export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
+
+
+
+
+  
