@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import {Route, Link } from "react-router-dom";
 import Story from "./StoryPage";
 import styled from "styled-components";
+
 import {getData, postData, handleTask} from '../actions';
+
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -14,17 +16,15 @@ const CategoryBtn = styled.button`
   margin: 5px;
   padding: 5px;
 `;
-
 const Category2Btn = styled.button`
   border-radius: 6px;
-  border: 1px solid #7bdcfe;
+  border: 1px solid #820000;
   background-color: #ededed;
-  color: #7bdcfe;
+  color: #820000;
   width: 7%;
   margin: 5px;
   padding: 5px;
 `;
-
 const Category3Btn = styled.button`
   border-radius: 6px;
   border: 1px solid #568ca1;
@@ -34,16 +34,28 @@ const Category3Btn = styled.button`
   margin: 5px;
   padding: 5px;
 `;
-
 const PlayBtn = styled.button`
   background-color: #ededed;
-  color: #007ACC;
+  color: #007acc;
+  border: 1px solid #007acc;
   border-radius: 6px;
   width: 6%;
   margin: 5px;
   padding: 5px;
   align-items: center;
 `;
+
+const LogoutBtn = styled.button`
+  background-color: #ededed;
+  color: #ce9178;
+  border: 1px solid #ce9178;
+  border-radius: 6px;
+  width: 6%;
+  margin: 5px;
+  padding: 5px;
+  align-items: center;
+`;
+
 
    
 const MadlibPage = (props) => {
@@ -121,19 +133,37 @@ const logout = ()=> {
         </div>
      
    
-  );
-};
 
-const mapStateToProps = state => {
+const Submit = styled.button`
+  background-color: #ededed;
+  font-size: 1rem;
+  color: #46c404;
+  border: 1px solid #46c404;
+  border-radius: 6px;
+  width: 11%;
+  height: 11%;
+  margin: 5px;
+  padding: 8px 3px;
+  align-items: center;
+`;
 
-  return {
-    test: state.test,
-    story: state.story,
-    error: state.error,
-    userAnswers: state.userAnswers
-  };
-};
+const PartOfSpeech = styled.label`
+    margin-right: 10px;
+`;
+
+const PartOfSpeechContainer = styled.div`
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`;
+
+
+  
+
 
 
 export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
+
 
