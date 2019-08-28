@@ -60,7 +60,7 @@ const Submit = styled.button`
   border-radius: 6px;
   width: 11%;
   height: 11%;
-  margin: 5px;
+  margin: 20px 0;
   padding: 8px 3px;
   align-items: center;
 `;
@@ -75,6 +75,10 @@ const PartOfSpeechContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     align-items: center;
+`;
+
+const CategoryWrapper = styled.div`
+    padding: 20px;
 `;
 
 const MadlibPage = props => {
@@ -127,12 +131,12 @@ const MadlibPage = props => {
   };
   return (
     <div>
-      hello world
+      {/* hello world */}
       <LogoutBtn onClick={logout}>Log Out</LogoutBtn>
-      {props.test}
+      {/* {props.test} */}
       <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
       {play && (
-        <div>
+        <CategoryWrapper>
           <CategoryBtn
             onClick={() => {
               props.getData(1);
@@ -160,7 +164,7 @@ const MadlibPage = props => {
           >
             Python
           </Category3Btn>
-        </div>
+        </CategoryWrapper>
       )}
       <form onSubmit={dataSetUp}>
         {form &&
