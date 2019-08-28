@@ -69,70 +69,57 @@ const Submit = styled.button`
 `;
 
 const PartOfSpeech = styled.label`
-  margin-right: 10px;
+    margin-right: 10px;
 `;
 
 const PartOfSpeechContainer = styled.div`
-  align-content: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const CategoryWrapper = styled.div`
     padding: 20px;
 `;
+   
+const MadlibPage = (props) => {
+    const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
+    const dataSetUp = (e)=> {
+        e.preventDefault()
+        const data =[];
+        for(let i= 0; i <wordTypes.length; i++){
+            data.push({lib_id: libId, type_id: types[wordTypes[i]], answer: userAnswer[i], order: i})
 
-const MadlibPage = props => {
-  const types = {
-    noun: 1,
-    verb: 2,
-    adjective: 3,
-    adverb: 4,
-    number: 5,
-    color: 6
-  };
-  const dataSetUp = e => {
-    e.preventDefault();
-    const data = [];
-    for (let i = 0; i < wordTypes.length; i++) {
-      data.push({
-        lib_id: libId,
-        type_id: types[wordTypes[i]],
-        answer: userAnswer[i],
-        order: i
-      });
+        }
+        console.log(data)
+        props.handleTask(userAnswer)
+        props.postData(data)
     }
-    console.log(data);
-    props.handleTask(userAnswer);
-    props.postData(data);
-  };
-  const [libId, setLibId] = useState(null);
-  const [play, setPlay] = useState(false);
-  const [form, setForm] = useState(false);
-  const [userAnswer, setUserAnswer] = useState({});
-  console.log(props.story.story);
-  const story = props.story.story;
-  console.log("user answer", userAnswer);
-  console.log(story);
-  let wordTypes = [];
-  let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"];
-  if (story) wordTypes = story.split(" ").filter(word => word.includes("("));
-  if (wordTypes.length > 0) {
-    wordTypes = wordTypes.map(word => {
-      return word
-        .split("")
-        .filter(letter => !badCharacters.includes(letter))
-        .join("")
-        .toLowerCase();
-    });
-  }
-  console.log(wordTypes);
+    const[libId, setLibId]= useState(null)
+    const[play, setPlay] = useState(false)
+    const[form, setForm] = useState(false)
+    const[userAnswer, setUserAnswer]= useState({})
+    console.log(props.story.story)
+    const story = props.story.story;
+    console.log("user answer", userAnswer)
+    console.log(story)
+    let wordTypes = []
+    let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
+    if (story) wordTypes = story.split(' ').filter(word => word.includes("("))
+    if (wordTypes.length > 0){
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    props.history.push("/");
+         wordTypes = wordTypes.map(word =>{
+             return word.split('').filter(letter =>  !badCharacters.includes(letter)).join('').toLowerCase()
+        })
+        
+    }
+    console.log(wordTypes)
+  
+const logout = ()=> {
+    localStorage.removeItem('token');
+    props.history.push('/');   
   };
   return (
     <div>
@@ -193,27 +180,23 @@ const MadlibPage = props => {
           })}
         <Submit>Submit your Words</Submit>
       </form>
-      <Story
-        story={props.story.story}
-        input={userAnswer}
-        wordArray={wordTypes}
-      />
-      {/* <Link to={`/protected/${id}`}>your story</Link> */}
-      {console.log("answers connected to redux", props.userAnswers)}
+<Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
     </div>
   );
 };
 
 const mapStateToProps = state => {
-    return {
-      test: state.test,
-      story: state.story,
-      error: state.error,
-      userAnswers: state.userAnswers
-    };
+  return {
+    test: state.test,
+    story: state.story,
+    error: state.error,
+    userAnswers: state.userAnswers
   };
+};
 
-export default connect(
-  mapStateToProps,
-  { getData, postData, handleTask }
-)(MadlibPage);
+export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
+
+
+
+
+  
