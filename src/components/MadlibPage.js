@@ -5,7 +5,7 @@ const MadlibPage = (props) => {
     return(
         <div>
             hello world
-            {props.test}
+            {/* {props.test} */}
         </div>
     )
 }
