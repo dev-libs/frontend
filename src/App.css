@@ -13,10 +13,29 @@ body {
 }
 
 input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #1E1E1E;
   color: #EDEDED;
   border: 2px solid #EDEDED;
   padding: 5px 5px;
   margin: 15px 0;
   
+}
+
+.fDdojj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wRlxo {
+  display: flex;
+  justify-content: center;
+}
+
+.ceyFEx {
+  display: flex;
+  justify-content: center;
 }
