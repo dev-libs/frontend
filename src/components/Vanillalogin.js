@@ -5,20 +5,17 @@ import styled from "styled-components";
 const Btn = styled.button`
   font-size: 1rem;
   margin: 15px;
-  padding: 5px;
+  padding: 7px;
+  border-radius: 6px;
 `;
 
 const LoginUsername = styled.div`
-  padding: 15px;
+  padding: 10px;
 `;
 
 const LoginPassword = styled.div`
-  margin-top: 10px;
-  padding: 15px;
-`;
-
-const Border = styled.section`
-  border: 2px solid #EDEDED;
+  // margin-top: 3px;
+  padding: 10px;
 `;
 
 class Loginvanilla extends React.Component {
@@ -71,7 +68,7 @@ class Loginvanilla extends React.Component {
 
   render() {
     return (
-      <Border>
+      <div>
         <form>
           <LoginUsername>
             <input
@@ -82,7 +79,7 @@ class Loginvanilla extends React.Component {
               onChange={this.handleChange}
             />
           </LoginUsername>
-          
+
           <LoginPassword>
             <input
               type="password"
@@ -95,10 +92,10 @@ class Loginvanilla extends React.Component {
 
           <Btn onClick={this.login}>Log in</Btn>
           <span>or</span>
-          <Btn onClick={this.register}>register</Btn>
+          <Btn onClick={this.register}>Register</Btn>
         </form>
         {this.state.regMessage && <p>{this.state.regMessage}</p>}
-      </Border>
+      </div>
     );
   }
 }

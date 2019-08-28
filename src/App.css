@@ -7,7 +7,23 @@ body {
 .App {
   background-color: #1E1E1E;
   color: #EDEDED;
+  border: 1px solid #EDEDED;
   margin: 15px;
   text-align: center;
 }
 
+input {
+  background-color: #1E1E1E;
+  padding-left: 5px;
+}
+
+.btn {
+  font-size: 5rem;
+  margin: 15px;
+  padding: 5px;
+}
+
+.btn:hover {
+  background-color: #1E1E1E;
+  color: #EDEDED;
+}
