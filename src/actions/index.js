@@ -29,10 +29,10 @@ export const getData = (id)=> {
         });
     }
 }
-export const postData = () => {
+export const postData = (value) => {
     return dispatch => {
         dispatch({ type: POST_MADLIB_DATA_START})
-        .post()
+        axiosWithAuth().post("https://bw-dev-libs.herokuapp.com/libs/play", {answers: value})
         .then(res => {
             console.log("response in post", res)
             dispatch({type: POST_MADLIB_DATA_SUCCESS})
