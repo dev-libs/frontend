@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Route, Link } from "react-router-dom";
+import Story from "./StoryPage";
 import styled from "styled-components";
-import { getData, postData } from "../actions";
+
+import { getData, postData, handleTask } from "../actions";
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -66,15 +69,15 @@ const Submit = styled.button`
 `;
 
 const PartOfSpeech = styled.label`
-    margin-right: 10px;
+  margin-right: 10px;
 `;
 
 const PartOfSpeechContainer = styled.div`
-    align-content: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const CategoryWrapper = styled.div`
@@ -83,12 +86,12 @@ const CategoryWrapper = styled.div`
 
 const MadlibPage = props => {
   const types = {
-    Noun: 1,
-    Verb: 2,
-    Adjective: 3,
-    Adverb: 4,
-    Number: 5,
-    Color: 6
+    noun: 1,
+    verb: 2,
+    adjective: 3,
+    adverb: 4,
+    number: 5,
+    color: 6
   };
   const dataSetUp = e => {
     e.preventDefault();
@@ -102,6 +105,7 @@ const MadlibPage = props => {
       });
     }
     console.log(data);
+    props.handleTask(userAnswer);
     props.postData(data);
   };
   const [libId, setLibId] = useState(null);
@@ -110,6 +114,7 @@ const MadlibPage = props => {
   const [userAnswer, setUserAnswer] = useState({});
   console.log(props.story.story);
   const story = props.story.story;
+  console.log("user answer", userAnswer);
   console.log(story);
   let wordTypes = [];
   let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"];
@@ -141,24 +146,24 @@ const MadlibPage = props => {
             onClick={() => {
               props.getData(1);
               setLibId(1);
-              setForm(!form);
+              setForm(true);
             }}
           >
             General
           </CategoryBtn>
-
           <Category2Btn
             onClick={() => {
               setLibId(2);
+              setForm(true);
               props.getData(2);
             }}
           >
             JS
           </Category2Btn>
-
           <Category3Btn
             onClick={() => {
               setLibId(3);
+              setForm(true);
               props.getData(3);
             }}
           >
@@ -180,6 +185,7 @@ const MadlibPage = props => {
                       ...userAnswer,
                       [e.target.name]: e.target.value
                     });
+                    //  props.handleTask(userAnswer)
                   }}
                 />
               </PartOfSpeechContainer>
@@ -187,17 +193,27 @@ const MadlibPage = props => {
           })}
         <Submit>Submit your Words</Submit>
       </form>
+      <Story
+        story={props.story.story}
+        input={userAnswer}
+        wordArray={wordTypes}
+      />
+      {/* <Link to={`/protected/${id}`}>your story</Link> */}
+      {console.log("answers connected to redux", props.userAnswers)}
     </div>
   );
 };
+
 const mapStateToProps = state => {
-  return {
-    test: state.test,
-    story: state.story,
-    error: state.error
+    return {
+      test: state.test,
+      story: state.story,
+      error: state.error,
+      userAnswers: state.userAnswers
+    };
   };
-};
+
 export default connect(
   mapStateToProps,
-  { getData, postData }
+  { getData, postData, handleTask }
 )(MadlibPage);
