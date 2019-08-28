@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Story from "./StoryPage";
 import styled from "styled-components";
-import {getData, postData, handleTask} from '../actions';
+
+import { getData, postData, handleTask } from "../actions";
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -14,17 +15,15 @@ const CategoryBtn = styled.button`
   margin: 5px;
   padding: 5px;
 `;
-
 const Category2Btn = styled.button`
   border-radius: 6px;
-  border: 1px solid #7bdcfe;
+  border: 1px solid #820000;
   background-color: #ededed;
-  color: #7bdcfe;
+  color: #820000;
   width: 7%;
   margin: 5px;
   padding: 5px;
 `;
-
 const Category3Btn = styled.button`
   border-radius: 6px;
   border: 1px solid #568ca1;
@@ -34,10 +33,10 @@ const Category3Btn = styled.button`
   margin: 5px;
   padding: 5px;
 `;
-
 const PlayBtn = styled.button`
   background-color: #ededed;
-  color: #007ACC;
+  color: #007acc;
+  border: 1px solid #007acc;
   border-radius: 6px;
   width: 6%;
   margin: 5px;
@@ -45,6 +44,45 @@ const PlayBtn = styled.button`
   align-items: center;
 `;
 
+const LogoutBtn = styled.button`
+  background-color: #ededed;
+  color: #ce9178;
+  border: 1px solid #ce9178;
+  border-radius: 6px;
+  width: 6%;
+  margin: 5px;
+  padding: 5px;
+  align-items: center;
+`;
+
+const Submit = styled.button`
+  background-color: #ededed;
+  font-size: 1rem;
+  color: #46c404;
+  border: 1px solid #46c404;
+  border-radius: 6px;
+  width: 11%;
+  height: 11%;
+  margin: 20px 0;
+  padding: 8px 3px;
+  align-items: center;
+`;
+
+const PartOfSpeech = styled.label`
+    margin-right: 10px;
+`;
+
+const PartOfSpeechContainer = styled.div`
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const CategoryWrapper = styled.div`
+    padding: 20px;
+`;
    
 const MadlibPage = (props) => {
     const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
@@ -81,51 +119,73 @@ const MadlibPage = (props) => {
   
 const logout = ()=> {
     localStorage.removeItem('token');
-    props.history.push('/');
-
-}
-    return(
-        <div>
-            hello world
-            <button onClick={logout}>log out</button>
-            {props.test}
-            <button onClick={()=>setPlay(true)}>play</button>
-            {play && <div><button onClick={()=>{
-                props.getData(1)
-                setLibId(1)
-                setForm(true)
-                }} >general</button>  
-                <button onClick={()=>{
-                    setLibId(2)
-                    setForm(true)
-                    props.getData(2)}}>javascript</button> 
-                 <button onClick={()=>{
-                     setLibId(3)
-                     setForm(true)
-                     props.getData(3)}} >python</button></div>}
-                 <form onSubmit={dataSetUp}>
-                 {form && wordTypes.map((wordType,i) => {
-                     return (<div key={i}><label>{wordType}</label><input name={i} value={userAnswer[i]} onChange={(e)=> {
-                         
-                         setUserAnswer({...userAnswer, [e.target.name]: e.target.value})
-                        //  props.handleTask(userAnswer)
-                     }}/></div>)
-                 })
-                }
-                     <button >submit your words</button>
-                     </form>
-                     <Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
-                     {/* <Link to={`/protected/${id}`}>your story</Link> */}
-                     {console.log("answers connected to redux", props.userAnswers)}
-                 
-        </div>
-     
-   
+    props.history.push('/');   
+  };
+  return (
+    <div>
+      {/* hello world */}
+      <LogoutBtn onClick={logout}>Log Out</LogoutBtn>
+      {/* {props.test} */}
+      <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
+      {play && (
+        <CategoryWrapper>
+          <CategoryBtn
+            onClick={() => {
+              props.getData(1);
+              setLibId(1);
+              setForm(true);
+            }}
+          >
+            General
+          </CategoryBtn>
+          <Category2Btn
+            onClick={() => {
+              setLibId(2);
+              setForm(true);
+              props.getData(2);
+            }}
+          >
+            JS
+          </Category2Btn>
+          <Category3Btn
+            onClick={() => {
+              setLibId(3);
+              setForm(true);
+              props.getData(3);
+            }}
+          >
+            Python
+          </Category3Btn>
+        </CategoryWrapper>
+      )}
+      <form onSubmit={dataSetUp}>
+        {form &&
+          wordTypes.map((wordType, i) => {
+            return (
+              <PartOfSpeechContainer key={i}>
+                <PartOfSpeech>{wordType}</PartOfSpeech>
+                <input
+                  name={i}
+                  value={userAnswer[i]}
+                  onChange={e => {
+                    setUserAnswer({
+                      ...userAnswer,
+                      [e.target.name]: e.target.value
+                    });
+                    //  props.handleTask(userAnswer)
+                  }}
+                />
+              </PartOfSpeechContainer>
+            );
+          })}
+        <Submit>Submit your Words</Submit>
+      </form>
+<Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
+    </div>
   );
 };
 
 const mapStateToProps = state => {
-
   return {
     test: state.test,
     story: state.story,
@@ -134,6 +194,9 @@ const mapStateToProps = state => {
   };
 };
 
-
 export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
 
+
+
+
+  
