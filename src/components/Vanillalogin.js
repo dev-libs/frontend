@@ -10,11 +10,10 @@ const Btn = styled.button`
 `;
 
 const LoginUsername = styled.div`
-  padding: 10px;
+  padding: 6px;
 `;
 
 const LoginPassword = styled.div`
-  // margin-top: 3px;
   padding: 10px;
 `;
 
