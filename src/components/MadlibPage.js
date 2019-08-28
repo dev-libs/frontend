@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Story from "./StoryPage";
 import styled from "styled-components";
 
-import {getData, postData, handleTask} from '../actions';
-
+import { getData, postData, handleTask } from "../actions";
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -134,24 +133,24 @@ const logout = ()=> {
             onClick={() => {
               props.getData(1);
               setLibId(1);
-              setForm(!form);
+              setForm(true);
             }}
           >
             General
           </CategoryBtn>
-
           <Category2Btn
             onClick={() => {
               setLibId(2);
+              setForm(true);
               props.getData(2);
             }}
           >
             JS
           </Category2Btn>
-
           <Category3Btn
             onClick={() => {
               setLibId(3);
+              setForm(true);
               props.getData(3);
             }}
           >
@@ -173,6 +172,7 @@ const logout = ()=> {
                       ...userAnswer,
                       [e.target.name]: e.target.value
                     });
+                    //  props.handleTask(userAnswer)
                   }}
                 />
               </PartOfSpeechContainer>
@@ -184,6 +184,7 @@ const logout = ()=> {
     </div>
   );
 };
+
 const mapStateToProps = state => {
   return {
     test: state.test,
