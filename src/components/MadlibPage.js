@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import {Route, Link } from "react-router-dom";
+import Story from "./StoryPage";
 import styled from "styled-components";
-import {getData, postData} from '../actions';
+import {getData, postData, handleTask} from '../actions';
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
@@ -43,30 +45,6 @@ const PlayBtn = styled.button`
   align-items: center;
 `;
 
-const MadlibPage = props => {
-  const [play, setPlay] = useState(false);
-  const [form, setForm] = useState(false);
-  console.log(props.story);
-
-  return (
-    <div>
-      hello world
-      {props.test}
-      <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
-      {play && (
-        <div>
-          <CategoryBtn
-            onClick={() => {
-              props.getData(1);
-              setForm(!form);
-            }}
-          >
-            {" "}
-            General{" "}
-          </CategoryBtn>
-          <Category2Btn onClick={() => props.getData(3)}>JS</Category2Btn>
-          <Category3Btn onClick={() => props.getData(3)}>Python</Category3Btn>
-=======
    
 const MadlibPage = (props) => {
     const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
@@ -78,6 +56,7 @@ const MadlibPage = (props) => {
 
         }
         console.log(data)
+        props.handleTask(userAnswer)
         props.postData(data)
     }
     const[libId, setLibId]= useState(null)
@@ -86,6 +65,7 @@ const MadlibPage = (props) => {
     const[userAnswer, setUserAnswer]= useState({})
     console.log(props.story.story)
     const story = props.story.story;
+    console.log("user answer", userAnswer)
     console.log(story)
     let wordTypes = []
     let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
@@ -113,27 +93,34 @@ const logout = ()=> {
             {play && <div><button onClick={()=>{
                 props.getData(1)
                 setLibId(1)
-                setForm(!form)
+                setForm(true)
                 }} >general</button>  
                 <button onClick={()=>{
                     setLibId(2)
+                    setForm(true)
                     props.getData(2)}}>javascript</button> 
                  <button onClick={()=>{
                      setLibId(3)
+                     setForm(true)
                      props.getData(3)}} >python</button></div>}
                  <form onSubmit={dataSetUp}>
                  {form && wordTypes.map((wordType,i) => {
                      return (<div key={i}><label>{wordType}</label><input name={i} value={userAnswer[i]} onChange={(e)=> {
+                         
                          setUserAnswer({...userAnswer, [e.target.name]: e.target.value})
+                        //  props.handleTask(userAnswer)
                      }}/></div>)
                  })
                 }
                      <button >submit your words</button>
                      </form>
+                     <Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
+                     {/* <Link to={`/protected/${id}`}>your story</Link> */}
+                     {console.log("answers connected to redux", props.userAnswers)}
                  
         </div>
-      )}
-    </div>
+     
+   
   );
 };
 
@@ -142,10 +129,11 @@ const mapStateToProps = state => {
   return {
     test: state.test,
     story: state.story,
-    error: state.error
+    error: state.error,
+    userAnswers: state.userAnswers
   };
 };
 
-}
-export default connect(mapStateToProps, {getData, postData})(MadlibPage);
+
+export default connect(mapStateToProps, {getData, postData, handleTask})(MadlibPage);
 
