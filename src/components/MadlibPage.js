@@ -97,6 +97,13 @@ const MadlibPage = (props) => {
         console.log(data)
         props.handleTask(userAnswer)
         props.postData(data)
+    return(
+        <div>
+            hello world
+            {/* {props.test} */}
+        </div>
+    )
+}
 
     }
     const[libId, setLibId]= useState(null)
@@ -186,7 +193,7 @@ const logout = ()=> {
   <span><Link className="storyTime" to="/story">Then Click Here to See your story</Link></span>
     </div>
   );
-}; 
+ 
 
 const mapStateToProps = state => {
   return {
