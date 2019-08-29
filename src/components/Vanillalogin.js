@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 const Btn = styled.button`
   background-color: #EDEDED;
-  color: #007ACC;
-  border-color: #007ACC;
-  border-width: medium;
+  color: #e7582b;
+  border: 3px solid #e7582b;
   font-size: 1rem;
   margin: 15px;
   padding: 7px;
@@ -15,9 +14,8 @@ const Btn = styled.button`
 
 const Btn2 = styled.button`
   background-color: #EDEDED;
-  color: #6A9955;
-  border-color: #6A9955;
-  border-width: medium;
+  color: #ffd12d;
+  border: 3px solid #ffd12d;
   font-size: 1rem;
   margin: 15px;
   padding: 7px;
@@ -82,7 +80,7 @@ class Loginvanilla extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="form-wrapper">
         <form>
           <LoginUsername>
             <input
