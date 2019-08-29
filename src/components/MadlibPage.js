@@ -91,6 +91,13 @@ const MadlibPage = (props) => {
         const data =[];
         for(let i= 0; i <wordTypes.length; i++){
             data.push({lib_id: libId, type_id: types[wordTypes[i]], answer: userAnswer[i], order: i})
+    return(
+        <div>
+            hello world
+            {/* {props.test} */}
+        </div>
+    )
+}
 
         }
         console.log(data)
@@ -183,7 +190,7 @@ const logout = ()=> {
 <Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
     </div>
   );
-};
+
 
 const mapStateToProps = state => {
   return {
