@@ -82,7 +82,7 @@ class Loginvanilla extends React.Component {
 
   render() {
     return (
-      <div>
+      <div> 
         <form>
           <LoginUsername>
             <input
