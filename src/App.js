@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 
-import LoginForm from "./components/LoginForm"
-import RegisterForm from "./components/RegisterForm";
 import MadlibPage from './components/MadlibPage';
 import PrivateRoute from './components/PrivateRoute';
 import Loginvanilla from './components/Vanillalogin';
