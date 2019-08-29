@@ -1,6 +1,40 @@
+body {
+  background-image: url("https://wallpapercave.com/w/wp2234698.jpg");
+  background-size: 100%;
+  background-size: cover;
+}
+
 .App {
+  background-color: #1E1E1E;
+  color: #EDEDED;
+  border: 1px solid #EDEDED;
+  margin: 15px;
   text-align: center;
 }
 
+input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1E1E1E;
+  color: #EDEDED;
+  border: 2px solid #EDEDED;
+  padding: 5px 5px;
+  margin: 15px 0;
+  
+}
 
+.fDdojj {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.jqrTOU {
+  margin: 20px 0;
+}
