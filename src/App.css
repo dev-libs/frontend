@@ -56,3 +56,8 @@ li a{
   color: white;
   padding: 1rem;
 }
+
+.storyTime {
+  text-decoration: none;
+  color: white;
+}
