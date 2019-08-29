@@ -20,9 +20,9 @@ function App() {
      <h1>Dev-Libs</h1>
       <nav>
         <ul>
-       <li><a href="https://awesome-rosalind-7d5640.netlify.com/index.html" target="_blank">About Us</a></li>
-        <li><Link to="/story">Story Time!</Link></li>
-        <li><Link to="/protected">Play Time!</Link></li>
+          <li><a href="https://awesome-rosalind-7d5640.netlify.com/index.html" target="_blank">About Us</a></li>
+          <li><Link to="/story">Story Time!</Link></li>
+          <li><Link to="/protected">Play Time!</Link></li>
         </ul>
       </nav>
      <h1>Mad-Libs for Developers </h1>
