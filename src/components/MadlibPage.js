@@ -8,16 +8,16 @@ import { getData, postData, handleTask } from "../actions";
 
 const CategoryBtn = styled.button`
   border-radius: 6px;
-  border: 1px solid #6a9955;
+  border: 3px solid #ffd12d;
   background-color: #ededed;
-  color: #6a9955;
+  color: #ffd12d;
   width: 7%;
   margin: 5px;
   padding: 5px;
 `;
 const Category2Btn = styled.button`
   border-radius: 6px;
-  border: 1px solid #820000;
+  border: 3px solid #820000;
   background-color: #ededed;
   color: #820000;
   width: 7%;
@@ -26,17 +26,17 @@ const Category2Btn = styled.button`
 `;
 const Category3Btn = styled.button`
   border-radius: 6px;
-  border: 1px solid #568ca1;
+  border: 3px solid #0385D2;
   background-color: #ededed;
-  color: #568ca1;
+  color: #0385D2;
   width: 7%;
   margin: 5px;
   padding: 5px;
 `;
 const PlayBtn = styled.button`
   background-color: #ededed;
-  color: #007acc;
-  border: 1px solid #007acc;
+  color: #0385d2;
+  border: 3px solid #0385d2;
   border-radius: 6px;
   width: 6%;
   margin: 5px;
@@ -46,8 +46,8 @@ const PlayBtn = styled.button`
 
 const LogoutBtn = styled.button`
   background-color: #ededed;
-  color: #ce9178;
-  border: 1px solid #ce9178;
+  color: #e7582b;
+  border: 3px solid #e7582b;
   border-radius: 6px;
   width: 6%;
   margin: 5px;
@@ -59,7 +59,7 @@ const Submit = styled.button`
   background-color: #ededed;
   font-size: 1rem;
   color: #46c404;
-  border: 1px solid #46c404;
+  border: 3px solid #46c404;
   border-radius: 6px;
   width: 11%;
   height: 11%;
