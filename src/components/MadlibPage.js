@@ -97,15 +97,8 @@ const MadlibPage = (props) => {
         console.log(data)
         props.handleTask(userAnswer)
         props.postData(data)
-    return(
-        <div>
-            hello world
-            {/* {props.test} */}
-        </div>
-    )
+  
 }
-
-    }
     const[libId, setLibId]= useState(null)
     const[play, setPlay] = useState(false)
     const[form, setForm] = useState(false)
@@ -194,7 +187,7 @@ const logout = ()=> {
     </div>
   );
  
-
+}
 const mapStateToProps = state => {
   return {
     test: state.test,
