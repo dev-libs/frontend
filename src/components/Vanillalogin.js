@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const Btn = styled.button`
   background-color: #EDEDED;
-  color: #007ACC;
-  border-color: #007ACC;
+  color: #e7582b;
+  border-color: #e7582b;
   border-width: medium;
   font-size: 1rem;
   margin: 15px;
