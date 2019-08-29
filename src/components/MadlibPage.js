@@ -123,9 +123,9 @@ const logout = ()=> {
   };
   return (
     <div>
-      {/* hello world */}
+
       <LogoutBtn onClick={logout}>Log Out</LogoutBtn>
-      {/* {props.test} */}
+    
       <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
       {play && (
         <CategoryWrapper>
@@ -178,9 +178,10 @@ const logout = ()=> {
               </PartOfSpeechContainer>
             );
           })}
-        <Submit>Submit your Words</Submit>
+            <Submit >Submit your Words</Submit>
       </form>
-<Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
+{/* <Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/> */}
+    <Link to="/story">See your story</Link>
     </div>
   );
 };
