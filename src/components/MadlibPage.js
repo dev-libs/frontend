@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Route, Link } from "react-router-dom";
-import Story from "./StoryPage";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 import { getData, postData, handleTask } from "../actions";
@@ -86,6 +86,7 @@ const CategoryWrapper = styled.div`
    
 const MadlibPage = (props) => {
     const types = {noun: 1, verb: 2, adjective: 3, adverb: 4, number: 5, color: 6}
+    //setting up the users anwswers into individual objects for each input
     const dataSetUp = (e)=> {
         e.preventDefault()
         const data =[];
@@ -96,6 +97,7 @@ const MadlibPage = (props) => {
         console.log(data)
         props.handleTask(userAnswer)
         props.postData(data)
+
     }
     const[libId, setLibId]= useState(null)
     const[play, setPlay] = useState(false)
@@ -123,9 +125,9 @@ const logout = ()=> {
   };
   return (
     <div>
-      {/* hello world */}
+
       <LogoutBtn onClick={logout}>Log Out</LogoutBtn>
-      {/* {props.test} */}
+    
       <PlayBtn onClick={() => setPlay(true)}>Play</PlayBtn>
       {play && (
         <CategoryWrapper>
@@ -178,12 +180,13 @@ const logout = ()=> {
               </PartOfSpeechContainer>
             );
           })}
-        <Submit>Submit your Words</Submit>
+            <Submit >Submit your Words</Submit>
       </form>
-<Story story={props.story.story} input={userAnswer}  wordArray={wordTypes}/>
+     
+  <span><Link className="storyTime" to="/story">Then Click Here to See your story</Link></span>
     </div>
   );
-};
+}; 
 
 const mapStateToProps = state => {
   return {

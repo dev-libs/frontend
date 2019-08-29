@@ -38,3 +38,21 @@ input {
 .jqrTOU {
   margin: 20px 0;
 }
+
+nav ul{
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+li a{
+  text-decoration: none;
+  color: white;
+  padding: 1rem;
+}
+
+.storyTime {
+  text-decoration: none;
+  color: white;
+}
