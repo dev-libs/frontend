@@ -80,6 +80,7 @@ class Loginvanilla extends React.Component {
 
   render() {
     return (
+
       <div className="form-wrapper">
         <form>
           <LoginUsername>
