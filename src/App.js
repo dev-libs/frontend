@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Link, } from "react-router-dom";
 
 
-
 import MadlibPage from './components/MadlibPage';
 import PrivateRoute from './components/PrivateRoute';
 import Loginvanilla from './components/Vanillalogin';
