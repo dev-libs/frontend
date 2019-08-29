@@ -30,12 +30,7 @@ input {
   align-items: center;
 }
 
-.wRlxo {
-  display: flex;
-  justify-content: center;
-}
-
-.ceyFEx {
+.form-wrapper {
   display: flex;
   justify-content: center;
 }
