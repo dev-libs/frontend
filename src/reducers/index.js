@@ -10,8 +10,11 @@ const initialState = {
     test: "testing my redux store",
     userAnswers: [],
     story: [],
-    isLoading: false
-}
+    isLoading: false,
+    error: '',
+    
+}  
+
 
 export const reducer = (state = initialState, action)=> {
     switch(action.type){

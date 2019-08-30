@@ -4,6 +4,7 @@ import MadlibPage from './components/MadlibPage';
 import PrivateRoute from './components/PrivateRoute';
 import Loginvanilla from './components/Vanillalogin';
 import Story from "./components/StoryPage";
+import AllLibs from './components/AllLibs';
 import './App.css';
 
 
@@ -23,6 +24,7 @@ function App() {
      <h1>Mad-Libs for Developers </h1>
     <switch>
      <PrivateRoute path="/protected" component={MadlibPage} />
+     <PrivateRoute path="/alllibs" component={AllLibs} />
      <PrivateRoute path="/story" component={Story} />     
      <Route  exact path="/" component={Loginvanilla}/>
      </switch>

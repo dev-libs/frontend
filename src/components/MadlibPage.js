@@ -108,7 +108,8 @@ const MadlibPage = (props) => {
     console.log("user answer", userAnswer)
     console.log(story)
     let wordTypes = []
-    let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
+    // let badCharacters = ["(", ")", ",", ".", "!", ";", "?", ":"]
+    let badCharacters = ["(", ")"]
     if (story) wordTypes = story.split(' ').filter(word => word.includes("("))
     if (wordTypes.length > 0){
 
